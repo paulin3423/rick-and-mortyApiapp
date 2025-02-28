@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rm_app/services/rm_api_service.dart';
@@ -40,7 +42,18 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: characters.length,
               itemBuilder: (context, index) {
                 final character = characters[index];
-                return Placeholder();
+                return Card(
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)
+                  ), 
+                  child :ListTile(
+                    leading:CachedNetworkImage(imageUrl: character.image),
+                    title: Text(character.name),
+                    subtitle: Text(character.status),
+                  )
+                );
               },
             );
           }
